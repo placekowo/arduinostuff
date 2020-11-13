@@ -1,9 +1,9 @@
 const int sensorPin = 0;    // defining all the pins
 const int transistorPin = 9;
+const int potentiometerPin = 1; // center pin of pot is connected to A1, edge pins connect to 5V and GND.  
 
 int level; // defining variables to be used later
-
-const int threshold = 50;  // level to turn on the light. this value can be tweaked with the help of the serial output to tune the circuit to the light level
+int threshold;
 
 void setup() {  // put your setup code here, to run once:
   pinMode(transistorPin, OUTPUT);  // defining transistor pin as an output
@@ -11,6 +11,7 @@ void setup() {  // put your setup code here, to run once:
 }
 
 void loop() {  // put your main code here, to run repeatedly:
+  threshold = analogRead(potentiometerPin); // potentiometer to set the threshold
   level=analogRead(sensorPin); // read the voltage from the sensor pin
   Serial.print(level); // print the level to the serial
   Serial.println(); // newline to make the serial output more readable
